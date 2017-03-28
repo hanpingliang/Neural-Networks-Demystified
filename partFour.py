@@ -65,3 +65,21 @@ class Neural_Network(object):
         dJdW1 = np.dot(X.T, delta2)  
         
         return dJdW1, dJdW2
+
+NN = Neural_Network()
+cost1 = NN.costFunction(X, y)
+print cost1
+dJdW1, dJdW2 = NN.costFunctionPrime(X,y)
+print dJdW1
+print dJdW2
+scalar = 3
+NN.W1 = NN.W1 + scalar*dJdW1
+NN.W2 = NN.W2 + scalar*dJdW2
+cost2 = NN.costFunction(X,y)
+print cost1, cost2
+
+dJdW1, dJdW2 = NN.costFunctionPrime(X,y)
+NN.W1 = NN.W1 - scalar*dJdW1
+NN.W2 = NN.W2 - scalar*dJdW2
+cost3 = NN.costFunction(X, y)
+print cost2, cost3
